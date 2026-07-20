@@ -14,7 +14,7 @@ export default function HomePage() {
                 <span className="text-white text-lg font-extrabold tracking-tight">F2M</span>
               </div>
               <div>
-                <span className="text-xl font-bold text-gray-900 leading-none block">Farm2Market</span>
+                <span className="text-xl font-bold text-gray-900 leading-none block">Farm2Door</span>
                 <span className="text-[10px] text-primary-600 font-semibold uppercase tracking-widest hidden sm:block">Agricultural Logistics</span>
               </div>
             </Link>
@@ -75,7 +75,7 @@ export default function HomePage() {
               </h1>
 
               <p className="text-lg sm:text-xl text-gray-600 leading-relaxed mb-9 max-w-lg">
-                Farm2Market connects hardworking farmers like you with trusted delivery partners — 
+                Farm2Door connects hardworking farmers like you with trusted delivery partners — 
                 so your fresh produce reaches market on time, every time. No more spoilage, 
                 no more stress about logistics.
               </p>
@@ -162,7 +162,7 @@ export default function HomePage() {
                       className="w-11 h-11 rounded-full object-cover shrink-0"
                     />
                     <div>
-                      <p className="text-sm text-gray-600 italic leading-snug">&quot;Before Farm2Market, I lost half my tomatoes to logistics delays. Now? I deliver everything fresh.&quot;</p>
+                      <p className="text-sm text-gray-600 italic leading-snug">&quot;Before Farm2Door, I lost half my tomatoes to logistics delays. Now? I deliver everything fresh.&quot;</p>
                       <p className="text-xs font-semibold text-gray-900 mt-2">— John Okonkwo, Farmer</p>
                     </div>
                   </div>
@@ -643,7 +643,7 @@ export default function HomePage() {
               Real Farmers. Real Results.
             </h2>
             <p className="text-lg text-gray-600">
-              Hear directly from people whose livelihoods have changed since they started using Farm2Market.
+              Hear directly from people whose livelihoods have changed since they started using Farm2Door.
             </p>
           </div>
 
@@ -659,7 +659,7 @@ export default function HomePage() {
                 image: "/images/farmer-harvest.jpg",
               },
               {
-                quote: "Managing 15 drivers used to mean endless phone calls. With Farm2Market's dashboard, I see everyone's status in one screen. My dispatch efficiency has tripled this year.",
+                quote: "Managing 15 drivers used to mean endless phone calls. With Farm2Door's dashboard, I see everyone's status in one screen. My dispatch efficiency has tripled this year.",
                 name: "Emeka Adebayo",
                 role: "Operations Manager, FastTrack Logistics",
                 location: "🇳🇬 Lagos",
@@ -726,7 +726,7 @@ export default function HomePage() {
 
             <div className="relative">
               <div className="text-center mb-12">
-                <h2 className="text-3xl sm:text-4xl font-bold mb-3">Farm2Market By The Numbers</h2>
+                <h2 className="text-3xl sm:text-4xl font-bold mb-3">Farm2Door By The Numbers</h2>
                 <p className="text-primary-200 text-lg">Growing steadily, serving communities that matter.</p>
               </div>
 
@@ -765,11 +765,11 @@ export default function HomePage() {
           <div className="space-y-4">
             {[
               {
-                q: "Is Farm2Market really free for farmers?",
+                q: "Is Farm2Door really free for farmers?",
                 a: "Yes! Creating an account, logging harvests, and booking delivery are all free for farmers. We make our money from transaction fees on logistics bookings — which still saves you money compared to finding transport yourself.",
               },
               {
-                q: "What areas does Farm2Market cover?",
+                q: "What areas does Farm2Door cover?",
                 a: "We currently operate across 22 states in Nigeria, including major agricultural hubs like Kano, Kaduna, Plateau, Benue, Oyo, Osun, Edo, Delta, Rivers, and more. We're expanding monthly.",
               },
               {
@@ -777,8 +777,8 @@ export default function HomePage() {
                 a: "All delivery partners and drivers go through a verification process. Orders are tracked in real-time from pickup to delivery, and you receive notifications at every stage. If something goes wrong, support responds within minutes.",
               },
               {
-                q: "Can I use Farm2Market if I don't have a smartphone?",
-                a: "Farm2Market works best on smartphones through our web portal (no app download needed!). However, if you can access any internet browser, even a basic phone browser, you can use the full platform. We recommend Chrome on Android or Safari on iPhone.",
+                q: "Can I use Farm2Door if I don't have a smartphone?",
+                a: "Farm2Door works best on smartphones through our web portal (no app download needed!). However, if you can access any internet browser, even a basic phone browser, you can use the full platform. We recommend Chrome on Android or Safari on iPhone.",
               },
               {
                 q: "What types of vehicles are available?",
@@ -790,7 +790,7 @@ export default function HomePage() {
               },
               {
                 q: "Is my data secure?",
-                a: "100%. Farm2Market uses bank-grade encryption, role-based access controls, and secure authentication. Your personal data, financial information, and business details are never shared with third parties without explicit consent.",
+                a: "100%. Farm2Door uses bank-grade encryption, role-based access controls, and secure authentication. Your personal data, financial information, and business details are never shared with third parties without explicit consent.",
               },
             ].map((faq) => (
               <details key={faq.q} className="group bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
@@ -867,7 +867,7 @@ export default function HomePage() {
                 <div className="w-10 h-10 bg-primary-600 rounded-xl flex items-center justify-center">
                   <span className="text-white text-lg font-extrabold">F2M</span>
                 </div>
-                <span className="text-xl font-bold text-white">Farm2Market</span>
+                <span className="text-xl font-bold text-white">Farm2Door</span>
               </div>
               <p className="text-sm leading-relaxed mb-6 max-w-sm">
                 Building Africa&apos;s most trusted agricultural logistics platform — connecting farmers with markets through technology and community.
@@ -921,7 +921,7 @@ export default function HomePage() {
           {/* Legal + Copyright */}
           <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-sm text-gray-500">
-              © {new Date().getFullYear()} Farm2Market Technologies Limited. All rights reserved.
+              © {new Date().getFullYear()} Farm2Door Technologies Limited. All rights reserved.
             </p>
             <div className="flex gap-6 text-sm">
               <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>

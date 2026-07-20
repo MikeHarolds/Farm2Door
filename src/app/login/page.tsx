@@ -67,7 +67,7 @@ export default function LoginPage() {
             </div>
           </Link>
           <h1 className="text-2xl font-bold text-gray-900">Welcome back</h1>
-          <p className="text-gray-500 mt-1">Sign in to your Farm2Market account</p>
+          <p className="text-gray-500 mt-1">Sign in to your Farm2Door account</p>
         </div>
 
         {/* Login Form */}
@@ -145,10 +145,10 @@ export default function LoginPage() {
           <div className="mt-4 p-3 bg-blue-50 rounded-xl border border-blue-100">
             <p className="text-xs text-blue-700 font-medium mb-1">🔑 Demo Accounts:</p>
             <p className="text-xs text-blue-600">
-              Admin: admin@farm2market.com / admin123<br/>
-              Farmer: farmer@farm2market.com / farmer123<br/>
-              Partner: partner@farm2market.com / partner123<br/>
-              Driver: driver@farm2market.com / driver123
+              Admin: admin@Farm2Door.com / admin123<br/>
+              Farmer: farmer@Farm2Door.com / farmer123<br/>
+              Partner: partner@Farm2Door.com / partner123<br/>
+              Driver: driver@Farm2Door.com / driver123
             </p>
           </div>
         </div>
