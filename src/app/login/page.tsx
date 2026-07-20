@@ -142,7 +142,7 @@ export default function LoginPage() {
           </div>
 
           {/* Demo credentials hint */}
-          <div className="mt-4 p-3 bg-blue-50 rounded-xl border border-blue-100">
+          {/* <div className="mt-4 p-3 bg-blue-50 rounded-xl border border-blue-100">
             <p className="text-xs text-blue-700 font-medium mb-1">🔑 Demo Accounts:</p>
             <p className="text-xs text-blue-600">
               Admin: admin@Farm2Door.com / admin123<br/>
@@ -150,7 +150,7 @@ export default function LoginPage() {
               Partner: partner@Farm2Door.com / partner123<br/>
               Driver: driver@Farm2Door.com / driver123
             </p>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
