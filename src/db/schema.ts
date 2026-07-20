@@ -1,5 +1,4 @@
-import { sql } from "drizzle-orm";
-import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import { boolean, integer, pgTable, serial, text, timestamp } from "drizzle-orm/pg-core";
 
 export const userRoles = ["farmer", "delivery_partner", "driver", "admin"] as const;
 export const userStatuses = ["active", "inactive", "pending"] as const;
@@ -18,26 +17,25 @@ export const orderStatuses = [
 export const driverDecisions = ["pending", "accepted", "rejected"] as const;
 export const availabilityStatuses = ["available", "sold_out", "limited"] as const;
 
-const timestamp = (name: string) =>
-  integer(name, { mode: "timestamp_ms" })
-    .notNull()
-    .default(sql`(unixepoch() * 1000)`);
+const timestamps = {
+  createdAt: timestamp("created_at", { mode: "date" }).notNull().defaultNow(),
+  updatedAt: timestamp("updated_at", { mode: "date" }).notNull().defaultNow(),
+};
 
 // Base authentication users.
-export const users = sqliteTable("users", {
-  id: integer("id").primaryKey({ autoIncrement: true }),
+export const users = pgTable("users", {
+  id: serial("id").primaryKey(),
   name: text("name").notNull(),
   email: text("email").notNull().unique(),
   phone: text("phone"),
   passwordHash: text("password_hash").notNull(),
   role: text("role", { enum: userRoles }).notNull(),
   status: text("status", { enum: userStatuses }).notNull().default("active"),
-  createdAt: timestamp("created_at"),
-  updatedAt: timestamp("updated_at"),
+  ...timestamps,
 });
 
-export const farmers = sqliteTable("farmers", {
-  id: integer("id").primaryKey({ autoIncrement: true }),
+export const farmers = pgTable("farmers", {
+  id: serial("id").primaryKey(),
   userId: integer("user_id")
     .references(() => users.id, { onDelete: "cascade" })
     .unique()
@@ -48,12 +46,11 @@ export const farmers = sqliteTable("farmers", {
   farmType: text("farm_type"),
   description: text("description"),
   totalHarvests: integer("total_harvests").default(0),
-  createdAt: timestamp("created_at"),
-  updatedAt: timestamp("updated_at"),
+  ...timestamps,
 });
 
-export const deliveryCompanies = sqliteTable("delivery_companies", {
-  id: integer("id").primaryKey({ autoIncrement: true }),
+export const deliveryCompanies = pgTable("delivery_companies", {
+  id: serial("id").primaryKey(),
   userId: integer("user_id")
     .references(() => users.id, { onDelete: "cascade" })
     .unique()
@@ -64,14 +61,13 @@ export const deliveryCompanies = sqliteTable("delivery_companies", {
   fleetSize: integer("fleet_size").default(0),
   operatingAreas: text("operating_areas"),
   licenseNumber: text("license_number"),
-  isActive: integer("is_active", { mode: "boolean" }).default(true),
-  capacityAvailable: integer("capacity_available", { mode: "boolean" }).default(true),
-  createdAt: timestamp("created_at"),
-  updatedAt: timestamp("updated_at"),
+  isActive: boolean("is_active").default(true),
+  capacityAvailable: boolean("capacity_available").default(true),
+  ...timestamps,
 });
 
-export const drivers = sqliteTable("drivers", {
-  id: integer("id").primaryKey({ autoIncrement: true }),
+export const drivers = pgTable("drivers", {
+  id: serial("id").primaryKey(),
   userId: integer("user_id")
     .references(() => users.id, { onDelete: "cascade" })
     .unique()
@@ -83,16 +79,15 @@ export const drivers = sqliteTable("drivers", {
   vehicleNumber: text("vehicle_number"),
   licenseNumber: text("license_number"),
   currentLocation: text("current_location"),
-  isAvailable: integer("is_available", { mode: "boolean" }).default(true),
+  isAvailable: boolean("is_available").default(true),
   // Stored as text to preserve the existing API shape and decimal precision.
   rating: text("rating").default("0.00"),
   totalDeliveries: integer("total_deliveries").default(0),
-  createdAt: timestamp("created_at"),
-  updatedAt: timestamp("updated_at"),
+  ...timestamps,
 });
 
-export const harvests = sqliteTable("harvests", {
-  id: integer("id").primaryKey({ autoIncrement: true }),
+export const harvests = pgTable("harvests", {
+  id: serial("id").primaryKey(),
   farmerId: integer("farmer_id")
     .references(() => farmers.id, { onDelete: "cascade" })
     .notNull(),
@@ -105,12 +100,11 @@ export const harvests = sqliteTable("harvests", {
   condition: text("condition", { enum: harvestConditions }).notNull().default("fresh"),
   notes: text("notes"),
   status: text("status").default("available"),
-  createdAt: timestamp("created_at"),
-  updatedAt: timestamp("updated_at"),
+  ...timestamps,
 });
 
-export const logisticsOrders = sqliteTable("logistics_orders", {
-  id: integer("id").primaryKey({ autoIncrement: true }),
+export const logisticsOrders = pgTable("logistics_orders", {
+  id: serial("id").primaryKey(),
   orderId: text("order_id").unique().notNull(),
   farmerId: integer("farmer_id")
     .references(() => farmers.id, { onDelete: "cascade" })
@@ -138,12 +132,11 @@ export const logisticsOrders = sqliteTable("logistics_orders", {
   deliveryInstructions: text("delivery_instructions"),
   cancelledReason: text("cancelled_reason"),
   failureReason: text("failure_reason"),
-  createdAt: timestamp("created_at"),
-  updatedAt: timestamp("updated_at"),
+  ...timestamps,
 });
 
-export const produceListings = sqliteTable("produce_listings", {
-  id: integer("id").primaryKey({ autoIncrement: true }),
+export const produceListings = pgTable("produce_listings", {
+  id: serial("id").primaryKey(),
   farmerId: integer("farmer_id")
     .references(() => farmers.id, { onDelete: "cascade" })
     .notNull(),
@@ -157,19 +150,18 @@ export const produceListings = sqliteTable("produce_listings", {
     .default("available"),
   description: text("description"),
   image: text("image"),
-  isOrganic: integer("is_organic", { mode: "boolean" }).default(false),
+  isOrganic: boolean("is_organic").default(false),
   category: text("category"),
-  createdAt: timestamp("created_at"),
-  updatedAt: timestamp("updated_at"),
+  ...timestamps,
 });
 
-export const activityLogs = sqliteTable("activity_logs", {
-  id: integer("id").primaryKey({ autoIncrement: true }),
+export const activityLogs = pgTable("activity_logs", {
+  id: serial("id").primaryKey(),
   adminId: integer("admin_id").references(() => users.id, { onDelete: "set null" }),
   action: text("action").notNull(),
   entityType: text("entity_type"),
   entityId: integer("entity_id"),
   details: text("details"),
   ipAddress: text("ip_address"),
-  createdAt: timestamp("created_at"),
+  createdAt: timestamp("created_at", { mode: "date" }).notNull().defaultNow(),
 });

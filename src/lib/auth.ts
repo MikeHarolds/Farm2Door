@@ -6,6 +6,12 @@ import { db } from "@/db";
 import { eq } from "drizzle-orm";
 import { users, farmers, deliveryCompanies, drivers } from "@/db/schema";
 
+if (process.env.NODE_ENV === "production" && !process.env.JWT_SECRET) {
+  throw new Error(
+    "JWT_SECRET must be set in production. Generate one with: openssl rand -base64 32"
+  );
+}
+
 const JWT_SECRET = new TextEncoder().encode(
   process.env.JWT_SECRET || "farm2market-secret-key-change-in-production"
 );

@@ -1,5 +1,7 @@
 # Farm2Market Local Database Conversion Report
 
+> **Note (superseded):** This report describes an earlier migration from PostgreSQL to a local SQLite-only setup. That decision was later reversed — the project has since been migrated back to PostgreSQL (via Neon) for both local development and production. See the accompanying "Farm2Door Database Migration Update" document and README.md for the current setup. This file is kept for historical context only.
+
 ## What was found
 
 - Framework: Next.js 16 with React 19 and TypeScript.

@@ -32,7 +32,7 @@ call npm install --registry=https://registry.npmjs.org/
 if errorlevel 1 goto :failed
 
 echo.
-echo Preparing the local SQLite database...
+echo Preparing the PostgreSQL database (requires DATABASE_URL in .env.local)...
 call npm run setup:local
 if errorlevel 1 goto :failed
 
