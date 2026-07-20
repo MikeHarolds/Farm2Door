@@ -94,13 +94,37 @@ export async function getSession(): Promise<SessionUser | null> {
     const cookieStore = await cookies();
     const token = cookieStore.get("auth-token")?.value;
 
-    if (!token) return null;
+    console.log("========== GET SESSION ==========");
+    console.log("Token exists:", !!token);
 
-    return await verifyToken(token);
-  } catch {
+    if (!token) {
+      console.log("No auth-token cookie found.");
+      return null;
+    }
+
+    const session = await verifyToken(token);
+
+    console.log("Decoded session:", session);
+
+    return session;
+  } catch (error) {
+    console.error("getSession error:", error);
     return null;
   }
 }
+
+// export async function getSession(): Promise<SessionUser | null> {
+//   try {
+//     const cookieStore = await cookies();
+//     const token = cookieStore.get("auth-token")?.value;
+
+//     if (!token) return null;
+
+//     return await verifyToken(token);
+//   } catch {
+//     return null;
+//   }
+// }
 
 // Get authenticated user from DB with full profile data based on role
 export async function getAuthenticatedUser() {
