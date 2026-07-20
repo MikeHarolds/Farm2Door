@@ -124,13 +124,27 @@ export default function Sidebar({ role, userName }: SidebarProps) {
 
       {/* Logout */}
       <div className="px-3 py-4 border-t border-gray-200">
-        <Link
+
+        <button
+  onClick={async () => {
+    await fetch("/api/auth/logout", {
+      method: "POST",
+    });
+
+    window.location.href = "/login";
+  }}
+  className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-red-600 hover:bg-red-50 transition-colors"
+>
+  <LogoutIcon />
+  Sign Out
+</button>
+        {/* <Link
           href="/api/auth/logout"
           className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-red-600 hover:bg-red-50 transition-colors"
         >
           <LogoutIcon />
           Sign Out
-        </Link>
+        </Link> */}
       </div>
     </aside>
   );
