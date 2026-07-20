@@ -10,7 +10,16 @@ export async function POST() {
 }
 
 export async function GET(request: Request) {
+  console.log("******** LOGOUT ROUTE HIT ********");
+  console.trace("Logout called from:");
+
   await clearAuthCookie();
 
   return NextResponse.redirect(new URL("/login", request.url));
 }
+
+// export async function GET(request: Request) {
+//   await clearAuthCookie();
+
+//   return NextResponse.redirect(new URL("/login", request.url));
+// }
